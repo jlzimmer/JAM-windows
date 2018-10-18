@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JAM_windows"
         mc:Ignorable="d"
         Title="Journalism Archive Manager" MinHeight="400" MinWidth="500" ResizeMode="CanResize" d:DesignWidth="500" d:DesignHeight="400">
-    <DockPanel>
+    <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Open" Name="open_menu" />
@@ -23,11 +23,17 @@
                 <MenuItem Header="About" Name="about_menu" />
             </MenuItem>
         </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <Button x:Name="selectDirectory" Margin="5">
+                    <Label>Select Folder</Label>
+                </Button>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Label x:Name="backupLabel">[Please select a folder to use for back-up]</Label>
+            </StatusBarItem>
+        </StatusBar>
         <Grid Name="content">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height=".15*"/>
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="4*" />
@@ -43,27 +49,26 @@
                         <!--Andrew build UI here-->
                     </Grid>
                 </TabItem>
-                <TabItem Header="OneDrive" Name="OneDriveTab" FontSize="14">
+                <TabItem Header="OneDrive" Name="OneDriveTab">
                     <Grid>
                         <Button x:Name="OneDriveConnect" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
                             <Label>Connect to OneDrive</Label>
                         </Button>
+                        <ListView x:Name="OneDriveList" Margin="10,58,10,44">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header=" Filename " />
+                                    <GridViewColumn Header=" Size " />
+                                    <GridViewColumn Header=" Last Modified " />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                         <ProgressBar x:Name="OneDriveUsage" Margin="10,0,10,10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="29" Width="394" >
                         </ProgressBar>
                         <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">Cloud Usage</Label>
                     </Grid>
                 </TabItem>
             </TabControl>
-            <StatusBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Grid.Row="1" Grid.ColumnSpan="2">
-                <StatusBarItem>
-                    <Button x:Name="selectDirectory" Margin="5">
-                        <Label>Select Folder</Label>
-                    </Button>
-                </StatusBarItem>
-                <StatusBarItem>
-                    <Label x:Name="backupLabel">[Please select a folder to use for back-up]</Label>
-                </StatusBarItem>
-            </StatusBar>
         </Grid>
     </DockPanel>
 </Window>
