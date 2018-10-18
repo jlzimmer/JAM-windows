@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JAM_windows"
         mc:Ignorable="d"
-        Title="Journalism Archive Manager" Height="400" Width="600" ResizeMode="CanMinimize">
-    <Grid Name="rootGrid">
+        Title="Journalism Archive Manager" MinHeight="400" MinWidth="500" ResizeMode="CanResize" d:DesignWidth="500" d:DesignHeight="400">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open" Name="open_menu" />
+                <MenuItem Header="Sync" Name="sync_menu"/>
+                <Separator />
+                <MenuItem Header="Preferences" Name="preferences_menu" />
+                <Separator />
+                <MenuItem Header="Exit" Name="exit_menu" />
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="What is JAM?" Name="what_jam_menu" />
+                <MenuItem Header="JAM Help (GitHub)" Name="github_menu" />
+                <Separator />
+                <MenuItem Header="About" Name="about_menu" />
+            </MenuItem>
+        </Menu>
         <Grid Name="content">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -16,17 +32,10 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
-            <TabControl Name="cloudServices" Margin="2,2,10,10" TabStripPlacement="Left" FontSize="14" Grid.ColumnSpan="2">
+            <TabControl Name="cloudServices" Margin="2,10,10,10" TabStripPlacement="Left" FontSize="14" Grid.ColumnSpan="2">
                 <TabItem Header="Box.com" Name="BoxComTab">
                     <Grid>
                         <!--Zach build UI here-->
-                    </Grid>
-                </TabItem>
-                <TabItem Header="OneDrive" Name="OneDriveTab" FontSize="14">
-                    <Grid>
-                        <Button x:Name="OneDriveConnect" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
-                            <Label>Connect to OneDrive</Label>
-                        </Button>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Google Drive" Name="GoogleDriveTab">
@@ -34,17 +43,27 @@
                         <!--Andrew build UI here-->
                     </Grid>
                 </TabItem>
+                <TabItem Header="OneDrive" Name="OneDriveTab" FontSize="14">
+                    <Grid>
+                        <Button x:Name="OneDriveConnect" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Label>Connect to OneDrive</Label>
+                        </Button>
+                        <ProgressBar x:Name="OneDriveUsage" Margin="10,0,10,10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="29" Width="394" >
+                        </ProgressBar>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">Cloud Usage</Label>
+                    </Grid>
+                </TabItem>
             </TabControl>
+            <StatusBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Grid.Row="1" Grid.ColumnSpan="2">
+                <StatusBarItem>
+                    <Button x:Name="selectDirectory" Margin="5">
+                        <Label>Select Folder</Label>
+                    </Button>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <Label x:Name="backupLabel">[Please select a folder to use for back-up]</Label>
+                </StatusBarItem>
+            </StatusBar>
         </Grid>
-        <StatusBar VerticalAlignment="Bottom">
-            <StatusBarItem>
-                <Button x:Name="selectDirectory" Margin="5">
-                    <Label>Select Folder</Label>
-                </Button>
-            </StatusBarItem>
-            <StatusBarItem>
-                <Label x:Name="backupLabel">[Please select a folder to use for back-up]</Label>
-            </StatusBarItem>
-        </StatusBar>
-    </Grid>
+    </DockPanel>
 </Window>
