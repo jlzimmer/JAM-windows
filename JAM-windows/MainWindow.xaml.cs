@@ -26,6 +26,7 @@ namespace JAM_windows
         private void SelectDirectory_Click(object sender, RoutedEventArgs e)
         {
             targetDirectory = new SelectDir();
+            BackupLabel.Content = targetDirectory.PathToDir;
             // Console.WriteLine(targetDirectory.PathToDir);
         }
     }
