@@ -15,10 +15,18 @@ namespace JAM_windows
     /// </summary>
     public partial class MainWindow : Window
     {
+        SelectDir targetDirectory;
+
         public MainWindow()
         {
             InitializeComponent();
             // Initialize directory if known
+        }
+
+        private void SelectDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            targetDirectory = new SelectDir();
+            // Console.WriteLine(targetDirectory.PathToDir);
         }
     }
 }

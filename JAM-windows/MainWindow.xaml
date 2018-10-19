@@ -9,28 +9,28 @@
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="Open" Name="open_menu" />
-                <MenuItem Header="Sync" Name="sync_menu"/>
+                <MenuItem Header="Open" Name="Open_menu" />
+                <MenuItem Header="Sync" Name="Sync_menu"/>
                 <Separator />
-                <MenuItem Header="Preferences" Name="preferences_menu" />
+                <MenuItem Header="Preferences" Name="Preferences_menu" />
                 <Separator />
-                <MenuItem Header="Exit" Name="exit_menu" />
+                <MenuItem Header="Exit" Name="Exit_menu" />
             </MenuItem>
             <MenuItem Header="Help">
-                <MenuItem Header="What is JAM?" Name="what_jam_menu" />
-                <MenuItem Header="JAM Help (GitHub)" Name="github_menu" />
+                <MenuItem Header="What is JAM?" Name="What_jam_menu" />
+                <MenuItem Header="JAM Help (GitHub)" Name="Github_menu" />
                 <Separator />
-                <MenuItem Header="About" Name="about_menu" />
+                <MenuItem Header="About" Name="About_menu" />
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
-                <Button x:Name="selectDirectory" Margin="5">
+                <Button x:Name="SelectDirectory" Margin="5" Click="SelectDirectory_Click">
                     <Label>Select Folder</Label>
                 </Button>
             </StatusBarItem>
             <StatusBarItem>
-                <Label x:Name="backupLabel">[Please select a folder to use for back-up]</Label>
+                <Label x:Name="BackupLabel">[Please select a folder to use for back-up]</Label>
             </StatusBarItem>
         </StatusBar>
         <Grid Name="content">
