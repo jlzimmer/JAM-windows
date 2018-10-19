@@ -1,0 +1,99 @@
+﻿<Window x:Name="Journalism_Archive_Manager" x:Class="JAM_windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JAM_windows"
+        mc:Ignorable="d"
+        Title="Journalism Archive Manager" MinHeight="400" MinWidth="500" ResizeMode="CanResize" d:DesignWidth="500" d:DesignHeight="400">
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open" Name="open_menu" />
+                <MenuItem Header="Sync" Name="sync_menu"/>
+                <Separator />
+                <MenuItem Header="Preferences" Name="preferences_menu" />
+                <Separator />
+                <MenuItem Header="Exit" Name="exit_menu" />
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="What is JAM?" Name="what_jam_menu" />
+                <MenuItem Header="JAM Help (GitHub)" Name="github_menu" />
+                <Separator />
+                <MenuItem Header="About" Name="about_menu" />
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <Button x:Name="selectDirectory" Margin="5">
+                    <Label>Select Folder</Label>
+                </Button>
+            </StatusBarItem>
+            <StatusBarItem>
+                <Label x:Name="backupLabel">[Please select a folder to use for back-up]</Label>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid Name="content">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+            <TabControl Name="cloudServices" Margin="2,10,10,10" TabStripPlacement="Left" FontSize="14" Grid.ColumnSpan="2">
+                <TabItem Header="Box.com" Name="BoxComTab">
+                    <Grid>
+                        <Button x:Name="BoxComConnect" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Label>Connect to Box.com</Label>
+                        </Button>
+                        <ListView x:Name="BoxComList" Margin="10,48,10,44">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header=" Filename " />
+                                    <GridViewColumn Header=" Size " />
+                                    <GridViewColumn Header=" Last Modified " />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <ProgressBar x:Name="BoxComUsage" Margin="10,0,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="29" />
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">Cloud Usage</Label>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Google Drive" Name="GoogleDriveTab">
+                    <Grid>
+                        <Button x:Name="GoogleDriveConnect" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Label>Connect to Google Drive</Label>
+                        </Button>
+                        <ListView x:Name="GoogleDriveList" Margin="10,48,10,44">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header=" Filename " />
+                                    <GridViewColumn Header=" Size " />
+                                    <GridViewColumn Header=" Last Modified " />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <ProgressBar x:Name="GoogleDriveUsage" Margin="10,0,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="29" />
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">Cloud Usage</Label>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="OneDrive" Name="OneDriveTab">
+                    <Grid>
+                        <Button x:Name="OneDriveConnect" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Label>Connect to OneDrive</Label>
+                        </Button>
+                        <ListView x:Name="OneDriveList" Margin="10,48,10,44">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header=" Filename " />
+                                    <GridViewColumn Header=" Size " />
+                                    <GridViewColumn Header=" Last Modified " />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <ProgressBar x:Name="OneDriveUsage" Margin="10,0,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="29" />
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">Cloud Usage</Label>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
+</Window>
