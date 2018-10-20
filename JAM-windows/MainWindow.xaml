@@ -32,6 +32,9 @@
             <StatusBarItem>
                 <Label x:Name="BackupLabel">[Please select a folder to use for back-up]</Label>
             </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <Label x:Name="DirVolumeLabel" HorizontalContentAlignment="Right">0.0 MB</Label>
+            </StatusBarItem>
         </StatusBar>
         <Grid Name="content">
             <Grid.ColumnDefinitions>

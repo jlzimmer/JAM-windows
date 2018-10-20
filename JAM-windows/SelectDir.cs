@@ -22,18 +22,50 @@ namespace JAM_windows
             }
         }
 
-        private long GetDirSize()
+        private long GetDirSize(string dir)
         {
-            string[] items = Directory.GetFiles(PathToDir, "*", SearchOption.AllDirectories);
             long size = 0;
 
-            foreach (string item in items)
+            try
             {
-                FileInfo fileInfo = new FileInfo(item);
-                size += fileInfo.Length;
+                foreach (string item in Directory.GetFiles(dir))
+                {
+                    FileInfo fileInfo = new FileInfo(item);
+                    size += fileInfo.Length;
+                }
+                foreach (string path in Directory.GetDirectories(dir))
+                {
+                    size += GetDirSize(path);
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                // log and inform user list of directories/files skipped
+            }
+            catch (IOException)
+            {
+                // display messagebox with Skip/Cancel options
             }
 
             return size;
+        }
+
+        public string SizeFormat()
+        {
+            string[] suffix = new string[] { "B", "KB", "MB", "GB" };
+            double size = DirSize;
+            int index = 0;
+
+            while (size / 1000 >= 1 || index < 3)
+            {
+                size /= 1000;
+                index++;
+            }
+
+            size = Math.Round(size, 1);
+            string info = size + " " + suffix[index];
+
+            return info;
         }
     }
 }
