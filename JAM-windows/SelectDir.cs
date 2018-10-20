@@ -8,17 +8,23 @@ namespace JAM_windows
     class SelectDir
     {
         public string PathToDir { get; }
-        public long DirSize { get => GetDirSize(); }
+        public long DirSize { get => GetDirSize(PathToDir); }
 
         public SelectDir()
         {
             using (FolderBrowserDialog browserDialog = new FolderBrowserDialog())
             {
                 browserDialog.Description = "Select a local directory for cloud file synchronization.";
-                browserDialog.RootFolder = Environment.SpecialFolder.UserProfile;
+                browserDialog.RootFolder = Environment.SpecialFolder.Desktop;
 
-                browserDialog.ShowDialog();
-                this.PathToDir = browserDialog.SelectedPath;
+                if (browserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    PathToDir = browserDialog.SelectedPath;
+                }
+                else
+                {
+                    PathToDir = null;
+                }
             }
         }
 
