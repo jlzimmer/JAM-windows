@@ -8,7 +8,7 @@ namespace JAM_windows
     class SelectDir
     {
         public string PathToDir { get; }
-        public double DirSize { get; }
+        public long DirSize { get => GetDirSize(); }
 
         public SelectDir()
         {
@@ -20,6 +20,20 @@ namespace JAM_windows
                 browserDialog.ShowDialog();
                 this.PathToDir = browserDialog.SelectedPath;
             }
+        }
+
+        private long GetDirSize()
+        {
+            string[] items = Directory.GetFiles(PathToDir, "*", SearchOption.AllDirectories);
+            long size = 0;
+
+            foreach (string item in items)
+            {
+                FileInfo fileInfo = new FileInfo(item);
+                size += fileInfo.Length;
+            }
+
+            return size;
         }
     }
 }
