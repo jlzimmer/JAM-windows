@@ -15,10 +15,28 @@ namespace JAM_windows
     /// </summary>
     public partial class MainWindow : Window
     {
+        SelectDir targetDirectory;
+
         public MainWindow()
         {
             InitializeComponent();
             // Initialize directory if known
+        }
+
+        private void SelectDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            targetDirectory = new SelectDir();
+            if (targetDirectory.PathToDir == null)
+            {
+                targetDirectory = null;
+                BackupLabel.Content = "[Please select a folder to use for back-up]";
+                DirVolumeLabel.Content = "0 B";
+                return;
+            }
+
+            BackupLabel.Content = targetDirectory.PathToDir;
+            DirVolumeLabel.Content = targetDirectory.SizeFormat();
+            // Console.WriteLine($"{0} has size {1}", targetDirectory.PathToDir, targetDirectory.SizeFormat());
         }
     }
 }

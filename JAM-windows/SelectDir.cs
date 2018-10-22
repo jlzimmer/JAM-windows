@@ -74,4 +74,8 @@ namespace JAM_windows
             return info;
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> feature/dir-select
