@@ -7,8 +7,15 @@ namespace JAM_windows
 {
     class SelectDir
     {
-        public string PathToDir { get; }
+        // Properties
+        // ***
+        // PathToDir - the directory root selected by the user via dialog window that appears during class construction
+        // DirSize - calculated value that calls GetDirSize() each time the property is accessed, this is to ensure that any external changes are accounted for
+        // Paths - a list of strings that represent all *accessible* paths, this list should only be set by GetDirSize()
+        // ***
+        public readonly string PathToDir;
         public long DirSize { get => GetDirSize(PathToDir); }
+        public List<FileInfo> Files { get; }
 
         public SelectDir()
         {
@@ -28,29 +35,35 @@ namespace JAM_windows
             }
         }
 
-        private long GetDirSize(string dir)
+        private static long GetDirSize(string dir)
         {
             long size = 0;
+            string[] paths = null;
+            List<FileInfo> files = new List<FileInfo>();
 
             try
             {
-                foreach (string item in Directory.GetFiles(dir))
+                paths = Directory.GetFiles(dir);
+
+                if (paths != null)
                 {
-                    FileInfo fileInfo = new FileInfo(item);
-                    size += fileInfo.Length;
-                }
-                foreach (string path in Directory.GetDirectories(dir))
-                {
-                    size += GetDirSize(path);
+                    foreach (string s in paths)
+                    {
+                        FileInfo f = new FileInfo(s);
+                        files.Add(f);
+                        size += f.Length;
+                    }
                 }
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException e)
             {
-                // log and inform user list of directories/files skipped
+                Console.WriteLine(e.Message);
+                Console.ReadKey();
             }
-            catch (IOException)
+            catch (IOException e)
             {
-                // display messagebox with Skip/Cancel options
+                Console.WriteLine(e.Message);
+                Console.ReadKey();
             }
 
             return size;
