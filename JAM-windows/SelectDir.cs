@@ -17,6 +17,11 @@ namespace JAM_windows
         public long DirSize { get => GetDirSize(PathToDir); }
         public List<FileInfo> Files { get; }
 
+        // Constructor
+        // ***
+        // Returns SelectDir object on success, null on failure
+        // Uses a System.Windows.Forms.FolderBrowserDialog() object to fetch the initial root directory and assigns it to PathToDir
+        // ***
         public SelectDir()
         {
             using (FolderBrowserDialog browserDialog = new FolderBrowserDialog())
@@ -35,6 +40,12 @@ namespace JAM_windows
             }
         }
 
+        // GetDirSize(string dir)
+        // ***
+        // Returns a long int representing the total size of the root directory
+        // This method is called each time the DirSize field is accessed to give an accurate and up-to-date read of the size of the working directory
+        // Also builds a List<FileInfo> so that subsequent logical interactions on the list of valid file paths can be executed immediately without calling this method again
+        // ***
         private static long GetDirSize(string dir)
         {
             long size = 0;
@@ -55,6 +66,7 @@ namespace JAM_windows
                     }
                 }
             }
+// ADDITIONAL WORK NEEDED ON EXCEPTION HANDLING
             catch (UnauthorizedAccessException e)
             {
                 Console.WriteLine(e.Message);
