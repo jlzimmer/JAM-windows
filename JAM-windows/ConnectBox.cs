@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Mvc;
 //using BoxOAuth.Models;
 using Microsoft.Extensions.Options;
 using Box.V2;
@@ -13,8 +12,11 @@ using Box.V2.Config;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using Microsoft.CSharp.RuntimeBinder;
-
-
+using System.Web.Mvc;
+using System.Web;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace JAM_windows
 {
@@ -30,17 +32,20 @@ namespace JAM_windows
           static BoxConfig config = new BoxConfig("1iymr4r3dlqpw44519tj7i5ycglmnzeq", "ujKUZqvE4SzHoNzs2JOUupxJemQWjW5m", new Uri("ttp://localhost:5000/route/return"));
         //  BoxClient client = new BoxClient(config);
 
-        string clientIdParam = $"client_id={config.ClientId}";
-        string redirectUrlParam = $"redirect_uri={BOX_AUTH_URL}";
+        static string clientIdParam = $"client_id={config.ClientId}";
+        static string redirectUrlParam = $"redirect_uri={BOX_AUTH_URL}";
 
-        Response.Redirect($"{BOX_AUTH_URL}?response_type=code&{clientIdParam}&{redirectUrlParam}");
+        HttpClient web = new HttpClient();
+        Uri webURL = new Uri ($"{BOX_AUTH_URL}?response_type=code&" + clientIdParam);
+       
         public void InitClient()
         {
             BoxClient client = new BoxClient(config);
             // BoxClient client = new BoxClient(configuration);
             Console.WriteLine("Client Initiated");
-
-
+            web.BaseAddress = webURL;
+            System.Diagnostics.Process.Start(webURL.ToString());
+            
         }
     }
 
