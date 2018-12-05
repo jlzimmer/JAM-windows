@@ -44,7 +44,7 @@
             <TabControl Name="cloudServices" Margin="2,10,10,10" TabStripPlacement="Left" FontSize="14" Grid.ColumnSpan="2">
                 <TabItem Header="Box.com" Name="BoxComTab">
                     <Grid>
-                        <Button x:Name="BoxComConnect" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Button x:Name="BoxComConnect" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="BoxComConnect_Click">
                             <Label>Connect to Box.com</Label>
                         </Button>
                         <ListView x:Name="BoxComList" Margin="10,48,10,44">
