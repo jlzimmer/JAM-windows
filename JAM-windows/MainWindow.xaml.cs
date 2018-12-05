@@ -36,7 +36,6 @@ namespace JAM_windows
 
             BackupLabel.Content = targetDirectory.PathToDir;
             DirVolumeLabel.Content = targetDirectory.SizeFormat();
-            // Console.WriteLine($"{0} has size {1}", targetDirectory.PathToDir, targetDirectory.SizeFormat());
         }
     }
 }
