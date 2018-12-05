@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("JAM-windows")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("University of Missouri-Columbia")]
 [assembly: AssemblyProduct("JAM-windows")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Copyright © 2018 Capstone Cucks")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
