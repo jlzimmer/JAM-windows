@@ -38,8 +38,8 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="Box.V2.Core, Version=3.9.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Box.V2.Core.3.9.3\lib\netstandard1.6\Box.V2.Core.dll</HintPath>
+    <Reference Include="Box.V2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ddda8fe64dde1ac3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Box.V2.3.9.3\lib\net45\Box.V2.dll</HintPath>
     </Reference>
     <Reference Include="Box.V2.JWTAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ddda8fe64dde1ac3, processorArchitecture=MSIL">
       <HintPath>..\packages\Box.V2.JWTAuth.1.3.3\lib\net45\Box.V2.JWTAuth.dll</HintPath>
@@ -185,6 +185,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConnectBox.cs" />
     <Compile Include="SelectDir.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
