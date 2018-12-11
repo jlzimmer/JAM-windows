@@ -113,18 +113,18 @@ namespace JAM_windows
             return boxFiles;
         }
 
-        public async void uploadFile(string path)
+        public async void uploadFile(string path, int count)
         {
             string filePath = path;
             using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
             {
                 BoxFileRequest requestParams = new BoxFileRequest()
                 {
-                    Name = "testing123",
+                    Name = "testing123" + count.ToString(),
                     Parent = new BoxRequestEntity() { Id = "0" }
                 };
 
-                  BoxFile file = await boxClient.FilesManager.UploadAsync(requestParams, fileStream);
+                BoxFile file = await boxClient.FilesManager.UploadAsync(requestParams, fileStream);
             }
 
           //  BoxFile file  = await boxClient.FilesManager.UploadAsync(request, stream);

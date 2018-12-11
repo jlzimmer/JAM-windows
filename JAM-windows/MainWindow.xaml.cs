@@ -29,6 +29,7 @@ namespace JAM_windows
         ConnectBox boxConnection = new ConnectBox();
         public string boxCode;
         public BoxBrowser boxBrowser = new BoxBrowser();
+        int x = 0;
 
         public MainWindow()
         {
@@ -61,9 +62,17 @@ namespace JAM_windows
 
         private void Upload_Click(object sender, RoutedEventArgs e)
         {
-           // targetDirectory.PathToDir;
-            string path = "";
-            boxConnection.uploadFile(path);
+            int z = targetDirectory.Files.Count;
+            List<FileInfo> fileInfos = new List<FileInfo>();
+            fileInfos = targetDirectory.Files;
+            
+            foreach(FileInfo file in fileInfos)
+            {
+                boxConnection.uploadFile(file.FullName, x);
+                x++;
+            }
+        
+          
         }
 
         public async void printURL()
@@ -71,7 +80,7 @@ namespace JAM_windows
             boxBrowser.Close();
 
             List<BoxFile> files = await boxConnection.GetInfo(boxCode);
-
+            
             foreach (BoxFile file in files)
             {
                 BoxComList.Items.Add(new BoxFileClass { FileName = file.Name, Size = file.Size.ToString(), LastModified = file.ModifiedAt.Value.ToShortDateString() });
