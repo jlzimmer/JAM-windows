@@ -54,14 +54,20 @@ namespace DriveQuickstart
             {
                 foreach (var file in files)
                 {
-                    Console.WriteLine("{0} ({1})", file.Name, file.Id);
+                    //Console.WriteLine("{0} ({1})", file.Name, file.Id);
+                    GoogleList.Items.Add(new GoogleDriveFileClass { FileName = file.Name, Size = file.Size.ToString(), LastModified = file.ModifiedTime.ToString()});
                 }
             }
-            else
+         }
+
+
+            public class GoogleDriveFileClass 
             {
-                Console.WriteLine("No files found.");
+                public String FileName { get; set; }
+                public String Size { get; set; }
+                public String LastModified { get; set; }
             }
-            Console.Read();
-        }
     }
 }
+
+            //Console.Read();

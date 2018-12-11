@@ -65,12 +65,12 @@
                         <Button x:Name="GoogleDriveConnect" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="GoogleDriveConnect_Click">
                             <Label>Connect to Google Drive</Label>
                         </Button>
-                        <ListView x:Name="GoogleDriveList" Margin="10,48,10,44">
+                      <ListView x:Name="GoogleList" Margin="10,48,10,44">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header=" Filename " />
-                                    <GridViewColumn Header=" Size " />
-                                    <GridViewColumn Header=" Last Modified " />
+                                    <GridViewColumn Header=" Filename " DisplayMemberBinding="{Binding FileName}"/>
+                                    <GridViewColumn Header=" Size " DisplayMemberBinding="{Binding Size}"/>
+                                    <GridViewColumn Header=" Last Modified " DisplayMemberBinding="{Binding LastModified}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
