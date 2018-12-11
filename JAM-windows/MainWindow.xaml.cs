@@ -29,7 +29,7 @@ namespace JAM_windows
         ConnectBox boxConnection = new ConnectBox();
         public string boxCode;
         public BoxBrowser boxBrowser = new BoxBrowser();
-        int x = 0;
+       
 
         public MainWindow()
         {
@@ -69,7 +69,6 @@ namespace JAM_windows
             foreach(FileInfo file in fileInfos)
             {
                 boxConnection.uploadFile(file.FullName, file.Name);
-                x++;
             }
         
           
