@@ -29,7 +29,6 @@ namespace JAM_windows
         ConnectBox boxConnection = new ConnectBox();
         public string boxCode;
         public BoxBrowser boxBrowser = new BoxBrowser();
-       
 
         public MainWindow()
         {
@@ -50,7 +49,6 @@ namespace JAM_windows
 
             BackupLabel.Content = targetDirectory.PathToDir;
             DirVolumeLabel.Content = targetDirectory.SizeFormat();
-            // Console.WriteLine($"{0} has size {1}", targetDirectory.PathToDir, targetDirectory.SizeFormat());
         }
 
         private void BoxComConnect_Click(object sender, RoutedEventArgs e)
@@ -93,7 +91,6 @@ namespace JAM_windows
             public String Size { get; set; }
             public String LastModified { get; set; }
         }
-         
 
     }
 

@@ -112,6 +112,7 @@ namespace JAM_windows
                     }
                 }
             }
+  
             this.Files = files;
             return size;
         }
