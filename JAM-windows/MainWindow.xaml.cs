@@ -71,8 +71,6 @@ namespace JAM_windows
                 boxConnection.uploadFile(file.FullName, file.Name);
                 x++;
             }
-        
-          
         }
 
         public async void printURL()
@@ -95,7 +93,6 @@ namespace JAM_windows
             public String LastModified { get; set; }
         }
          
-
     }
 
 }
