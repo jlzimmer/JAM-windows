@@ -33,6 +33,11 @@
             <StatusBarItem>
                 <Label x:Name="BackupLabel">[Please select a folder to use for back-up]</Label>
             </StatusBarItem>
+            <StatusBarItem>
+                <Button x:Name="Upload" Click="Upload_Click" Margin="5">
+                    <Label>Upload</Label>
+                </Button>
+            </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <Label x:Name="DirVolumeLabel" HorizontalContentAlignment="Right" Margin="5">0 B</Label>
             </StatusBarItem>

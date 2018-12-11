@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using Box.V2;
 using Box.V2.Models;
 using System.Windows.Navigation;
-
+using System.IO;
 
 
 
@@ -29,27 +29,6 @@ namespace JAM_windows
         ConnectBox boxConnection = new ConnectBox();
         public string boxCode;
         public BoxBrowser boxBrowser = new BoxBrowser();
-
-        public class BoxFileClass
-        {
-            public String FileName { get; set; }
-            public String Size { get; set; }
-            public String LastModified { get; set; }
-
-        }
-
-        public async void printURL()
-        {
-           // System.Windows.MessageBox.Show(boxCode);
-            boxBrowser.Close();
-       
-            List<BoxFile> files =  await boxConnection.GetInfo(boxCode);
-         
-            foreach(BoxFile file in files)
-            {
-                BoxComList.Items.Add(new BoxFileClass{ FileName = file.Name, Size = file.Size.ToString(), LastModified = file.ModifiedAt.Value.ToShortDateString()});
-            }
-        }
 
         public MainWindow()
         {
@@ -80,9 +59,34 @@ namespace JAM_windows
             boxBrowser.Show();
         }
 
-     
+        private void Upload_Click(object sender, RoutedEventArgs e)
+        {
+           // targetDirectory.PathToDir;
+            string path = "";
+            boxConnection.uploadFile(path);
+        }
 
-     
+        public async void printURL()
+        {
+            boxBrowser.Close();
+
+            List<BoxFile> files = await boxConnection.GetInfo(boxCode);
+
+            foreach (BoxFile file in files)
+            {
+                BoxComList.Items.Add(new BoxFileClass { FileName = file.Name, Size = file.Size.ToString(), LastModified = file.ModifiedAt.Value.ToShortDateString() });
+            }
+        }
+
+
+        public class BoxFileClass
+        {
+            public String FileName { get; set; }
+            public String Size { get; set; }
+            public String LastModified { get; set; }
+        }
+         
 
     }
+
 }

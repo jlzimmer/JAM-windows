@@ -27,11 +27,13 @@ using Box.V2.Plugins;
 using Box.V2.Request;
 using Box.V2.Services;
 using System.Windows.Navigation;
+using System.IO;
 
 namespace JAM_windows
 {
     class ConnectBox 
     {
+        BoxClient boxClient = new BoxClient(config);
         const string BOX_AUTH_URL = "https://account.box.com/api/oauth2/authorize";
      //   private BoxAppSettings _boxSettings { get; set; }
         private BoxClient _boxClient { get; set; }
@@ -92,7 +94,7 @@ namespace JAM_windows
         {
             // Console.WriteLine(window.ToString());
             //  window.Close();
-            BoxClient boxClient = new BoxClient(config);
+           
             await boxClient.Auth.AuthenticateAsync(authCode);
 
 
@@ -109,6 +111,25 @@ namespace JAM_windows
             }
 
             return boxFiles;
+        }
+
+        public async void uploadFile(string path)
+        {
+            string filePath = path;
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
+            {
+                BoxFileRequest requestParams = new BoxFileRequest()
+                {
+                    Name = "testing123",
+                    Parent = new BoxRequestEntity() { Id = "0" }
+                };
+
+                  BoxFile file = await boxClient.FilesManager.UploadAsync(requestParams, fileStream);
+            }
+
+          //  BoxFile file  = await boxClient.FilesManager.UploadAsync(request, stream);
+           // stream.
+         
         }
     }
 
