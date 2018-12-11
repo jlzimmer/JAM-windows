@@ -10,6 +10,9 @@ using System.Windows.Input;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Box.V2;
+using Box.V2.Models;
+using System.Windows.Navigation;
+
 
 
 
@@ -23,6 +26,39 @@ namespace JAM_windows
     public partial class MainWindow : Window
     {
         SelectDir targetDirectory;
+        ConnectBox boxConnection = new ConnectBox();
+        public string boxCode;
+        public BoxBrowser boxBrowser = new BoxBrowser();
+
+        public class BoxFileClass
+        {
+            public String FileName;
+            public String FileSize;
+
+        }
+
+        public async void printURL()
+        {
+            System.Windows.MessageBox.Show(boxCode);
+            boxBrowser.Close();
+            // BoxClient boxClient = new BoxClient();
+            List<BoxFile> files =  await boxConnection.GetInfo(boxCode);
+            int x = 0;
+            //while (x<files.Entries.Count())
+            //{
+            //    Console.WriteLine(files.Entries.ElementAtOrDefault<BoxItem>(x).Name);
+            //    x++;
+            //}
+            foreach(BoxFile file in files)
+            {
+                //System.Windows.MessageBox.Show(file.Name);
+                BoxComList.Items.Add(new String[] { boxName. = file.Name,  });
+              //  BoxComList.Items.Add(file.Size.ToString());
+              //  BoxComList.Items.Add(file.ModifiedAt.ToString());
+            }
+            //System.Windows.MessageBox.Show(file.Name);
+           // Console.WriteLine
+        }
 
         public MainWindow()
         {
@@ -47,10 +83,15 @@ namespace JAM_windows
         }
 
         private void BoxComConnect_Click(object sender, RoutedEventArgs e)
-        {
-            ConnectBox boxConnection = new ConnectBox();
+        {          
             boxConnection.InitClient();
-         
+            boxBrowser.setURL(boxConnection.InitClient(), this);
+            boxBrowser.Show();
         }
+
+     
+
+     
+
     }
 }
