@@ -68,9 +68,9 @@
                       <ListView x:Name="GoogleList" Margin="10,48,10,44">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header=" Filename " DisplayMemberBinding="{Binding FileName}"/>
-                                    <GridViewColumn Header=" Size " DisplayMemberBinding="{Binding Size}"/>
-                                    <GridViewColumn Header=" Last Modified " DisplayMemberBinding="{Binding LastModified}"/>
+                                    <GridViewColumn Header=" Filename " DisplayMemberBinding="{Binding GoogleFileName}"/>
+                                    <GridViewColumn Header=" Size " DisplayMemberBinding="{Binding GoogleSize}"/>
+                                    <GridViewColumn Header=" Last Modified " DisplayMemberBinding="{Binding GoogleLastModified}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>

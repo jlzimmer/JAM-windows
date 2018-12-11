@@ -46,7 +46,7 @@ namespace JAM_windows
         {
             var googleDriveConnect = new DriveQuickstart.GoogleDriveConnect();
 
-            googleDriveConnect.GoogleDrive();
+            IList<Google.Apis.Drive.v3.Data.File> files = googleDriveConnect.GoogleDrive();
 
             if (googleDriveConnect == null)
             {
@@ -54,6 +54,20 @@ namespace JAM_windows
                 Console.Write("Could not instantiate google drive connect");
 
             }
+
+
+            foreach (Google.Apis.Drive.v3.Data.File file in files)
+            {
+
+                GoogleList.Items.Add(new GoogleDriveFileClass { GoogleFileName = file.Name });
+                    //, GoogleLastModified = file.ModifiedTime.Value.ToShortDateString() });
+            }
+        }
+        public class GoogleDriveFileClass
+        {
+            public String GoogleFileName { get; set; }
+            public String GoogleSize { get; set; }
+            public String GoogleLastModified { get; set; }
         }
     }
 }

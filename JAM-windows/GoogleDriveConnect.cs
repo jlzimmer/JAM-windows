@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DriveQuickstart;
+using System.Diagnostics;
 
 namespace DriveQuickstart
 {
@@ -19,7 +20,7 @@ namespace DriveQuickstart
         // at ~/.credentials/drive-dotnet-quickstart.json
         static string[] Scopes = { DriveService.Scope.DriveReadonly };
         static string ApplicationName = "Drive API .NET Quickstart";
-        public void GoogleDrive()
+        public IList<Google.Apis.Drive.v3.Data.File> GoogleDrive()
         {
             UserCredential credential;
             using (var stream =
@@ -47,26 +48,24 @@ namespace DriveQuickstart
             listRequest.PageSize = 10;
             listRequest.Fields = "nextPageToken, files(id, name)";
             // List files.
-            IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute()
-                .Files;
-            Console.WriteLine("Files:");
-            if (files != null && files.Count > 0)
-            {
-                foreach (var file in files)
+        
+
+         //  public IList<Google.Apis.Drive.v3.Data.File> filesInfo() {
+
+                IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute()
+                    .Files;
+                Console.WriteLine("Files:");
+                if (files != null && files.Count > 0)
                 {
-                    //Console.WriteLine("{0} ({1})", file.Name, file.Id);
-                    GoogleList.Items.Add(new GoogleDriveFileClass { FileName = file.Name, Size = file.Size.ToString(), LastModified = file.ModifiedTime.ToString()});
+                    //foreach (var file in files)
+                    //{
+                    //    Debug.WriteLine("{0} ({1})", file.Name, file.Id);
+
+                    //}
                 }
+                return files;
             }
-         }
-
-
-            public class GoogleDriveFileClass 
-            {
-                public String FileName { get; set; }
-                public String Size { get; set; }
-                public String LastModified { get; set; }
-            }
+         
     }
 }
 
