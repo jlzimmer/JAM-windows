@@ -80,7 +80,7 @@
                 </TabItem>
                 <TabItem Header="OneDrive" Name="OneDriveTab">
                     <Grid>
-                        <Button x:Name="OneDriveConnect" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Button x:Name="OneDriveConnect" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="OneDriveConnect_Click">
                             <Label>Connect to OneDrive</Label>
                         </Button>
                         <ListView x:Name="OneDriveList" Margin="10,48,10,44">

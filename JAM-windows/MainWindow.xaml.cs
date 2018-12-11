@@ -16,6 +16,7 @@ namespace JAM_windows
     public partial class MainWindow : Window
     {
         SelectDir targetDirectory;
+        OneDriveConnect ODconnect;
 
         public MainWindow()
         {
@@ -36,6 +37,23 @@ namespace JAM_windows
 
             BackupLabel.Content = targetDirectory.PathToDir;
             DirVolumeLabel.Content = targetDirectory.SizeFormat();
+        }
+
+        private void OneDriveConnect_Click(object sender, RoutedEventArgs e)
+        {
+            ODconnect = new OneDriveConnect();
+            string userInfo = ODconnect.GetUserInfo().ToString();
+            if (userInfo == null)
+            {
+                MessageBox.Show("There was an error connecting to the Microsoft Graph API.", "Connection results", MessageBoxButton.OK);
+                return;
+            }
+            else
+            {
+                MessageBox.Show($"{userInfo}", "Connection results", MessageBoxButton.OK);
+            }
+
+
         }
     }
 }
