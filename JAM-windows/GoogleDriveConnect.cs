@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DriveQuickstart;
 
 namespace DriveQuickstart
 {
@@ -18,11 +19,11 @@ namespace DriveQuickstart
         // at ~/.credentials/drive-dotnet-quickstart.json
         static string[] Scopes = { DriveService.Scope.DriveReadonly };
         static string ApplicationName = "Drive API .NET Quickstart";
-        static void Main(string[] args)
+        public void GoogleDrive()
         {
             UserCredential credential;
             using (var stream =
-               new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+               new FileStream("GoogleCredentials.json", FileMode.Open, FileAccess.Read))
             {
                 // The file token.json stores the user's access and refresh tokens, and is created
                 // automatically when the authorization flow completes for the first time.

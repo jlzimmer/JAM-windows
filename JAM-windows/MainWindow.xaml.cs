@@ -7,6 +7,10 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Diagnostics;
+
+
+
 
 namespace JAM_windows
 {
@@ -36,6 +40,20 @@ namespace JAM_windows
 
             BackupLabel.Content = targetDirectory.PathToDir;
             DirVolumeLabel.Content = targetDirectory.SizeFormat();
+        }
+
+        private void GoogleDriveConnect_Click(object sender, RoutedEventArgs e)
+        {
+            var googleDriveConnect = new DriveQuickstart.GoogleDriveConnect();
+
+            googleDriveConnect.GoogleDrive();
+
+            if (googleDriveConnect == null)
+            {
+                // some error stuff
+                Console.Write("Could not instantiate google drive connect");
+
+            }
         }
     }
 }
