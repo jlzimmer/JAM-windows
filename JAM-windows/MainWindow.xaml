@@ -53,9 +53,9 @@
                         <ListView x:Name="BoxComList" Margin="10,48,10,44">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn x:Name="boxName" Header="Filename" />
-                                    <GridViewColumn x:Name="boxSize" Header="Size" />
-                                    <GridViewColumn x:Name="boxLastModified" Header="LastModified" />
+                                    <GridViewColumn x:Name="boxName" Header="Filename" DisplayMemberBinding="{Binding FileName}"/>
+                                    <GridViewColumn x:Name="boxSize" Header="Size" DisplayMemberBinding="{Binding Size}" />
+                                    <GridViewColumn x:Name="boxLastModified" Header="Last Modified" DisplayMemberBinding="{Binding LastModified}" />
                                 </GridView>
                             </ListView.View>
                         </ListView>

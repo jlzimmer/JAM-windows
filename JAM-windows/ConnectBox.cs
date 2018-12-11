@@ -98,11 +98,14 @@ namespace JAM_windows
 
             // OAuthSession oAuthSession = new OAuthSession(boxCode);
             //  BoxCollection boxFiles = await boxClient.FoldersManager.GetFolderItemsAsync("0", 500);
-            BoxCollection<BoxItem> files = await boxClient.FoldersManager.GetFolderItemsAsync("0", 15);
+            BoxCollection<BoxItem> files = await boxClient.FoldersManager.GetFolderItemsAsync("0", 500);
             List<BoxFile> boxFiles = new List<BoxFile>();
             foreach(BoxItem file in files.Entries)
             {
-                boxFiles.Add(await boxClient.FilesManager.GetInformationAsync(file.Id));
+                if (file.Type == "file")
+                {
+                    boxFiles.Add(await boxClient.FilesManager.GetInformationAsync(file.Id));
+                }
             }
 
             return boxFiles;

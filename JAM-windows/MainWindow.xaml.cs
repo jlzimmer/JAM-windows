@@ -32,32 +32,23 @@ namespace JAM_windows
 
         public class BoxFileClass
         {
-            public String FileName;
-            public String FileSize;
+            public String FileName { get; set; }
+            public String Size { get; set; }
+            public String LastModified { get; set; }
 
         }
 
         public async void printURL()
         {
-            System.Windows.MessageBox.Show(boxCode);
+           // System.Windows.MessageBox.Show(boxCode);
             boxBrowser.Close();
-            // BoxClient boxClient = new BoxClient();
+       
             List<BoxFile> files =  await boxConnection.GetInfo(boxCode);
-            int x = 0;
-            //while (x<files.Entries.Count())
-            //{
-            //    Console.WriteLine(files.Entries.ElementAtOrDefault<BoxItem>(x).Name);
-            //    x++;
-            //}
+         
             foreach(BoxFile file in files)
             {
-                //System.Windows.MessageBox.Show(file.Name);
-                BoxComList.Items.Add(new String[] { boxName. = file.Name,  });
-              //  BoxComList.Items.Add(file.Size.ToString());
-              //  BoxComList.Items.Add(file.ModifiedAt.ToString());
+                BoxComList.Items.Add(new BoxFileClass{ FileName = file.Name, Size = file.Size.ToString(), LastModified = file.ModifiedAt.Value.ToShortDateString()});
             }
-            //System.Windows.MessageBox.Show(file.Name);
-           // Console.WriteLine
         }
 
         public MainWindow()
