@@ -68,7 +68,7 @@ namespace JAM_windows
             
             foreach(FileInfo file in fileInfos)
             {
-                boxConnection.uploadFile(file.FullName, x);
+                boxConnection.uploadFile(file.FullName, file.Name);
                 x++;
             }
         
