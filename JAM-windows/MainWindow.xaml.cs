@@ -39,13 +39,21 @@ namespace JAM_windows
             DirVolumeLabel.Content = targetDirectory.SizeFormat();
         }
 
-        private void OneDriveConnect_Click(object sender, RoutedEventArgs e)
+        private async void OneDriveConnect_Click(object sender, RoutedEventArgs e)
         {
             ODconnect = new OneDriveConnect();
-            string userInfo = ODconnect.GetUserInfo().ToString();
+            if (ODconnect.EstablishConnection().Result == false)
+            {
+                ODconnect = null;
+                MessageBox.Show("There was an error connecting to the Microsoft Graph API. \nPlease check your network connection and try again.", "Connection error", MessageBoxButton.OK);
+                return;
+            }
+
+            string userInfo = await ODconnect.GetUserInfo();
             if (userInfo == null)
             {
-                MessageBox.Show("There was an error connecting to the Microsoft Graph API.", "Connection results", MessageBoxButton.OK);
+                ODconnect = null;
+                MessageBox.Show("There was an error connecting to the Microsoft Graph API. \nPlease check your network connection and try again.", "Connection error", MessageBoxButton.OK);
                 return;
             }
             else

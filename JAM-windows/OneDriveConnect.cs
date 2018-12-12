@@ -14,7 +14,12 @@ namespace JAM_windows
     {
         readonly string graphProfileEndpoint = "https://graph.microsoft.com/v1.0/me";
         readonly string[] scopes = new string[] { "user.read", "files.readwrite.all" };
-        AuthenticationResult authentication = null;
+        public AuthenticationResult authentication { get; private set; }
+
+        public OneDriveConnect()
+        {
+            EstablishConnection();
+        }
 
         public async Task<bool> EstablishConnection()
         {
@@ -70,8 +75,8 @@ namespace JAM_windows
                 request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                 HttpClient client = new HttpClient();
                 HttpResponseMessage response = await client.SendAsync(request);
-                var profile = await response.Content.ReadAsStringAsync();
-                return profile;
+                var profile = response.Content.ReadAsStringAsync();
+                return profile.Result;
             }
             catch (Exception e)
             {
